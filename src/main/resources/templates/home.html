@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}"
+>
+  <head>
+    <title>Trang Test</title>
+  </head>
+
+  <div layout:fragment="body">
+    <!-- <div class="card">
+      <div class="card-body">
+        <div class="row flex-nowrap">
+          <div class="col">
+            <div class="card card bg-info-subtle">
+              <div class="card-body text-center px-9 pb-4">
+                <div
+                  class="d-flex align-items-center justify-content-center round-48 rounded text-bg-info flex-shrink-0 mb-3 mx-auto"
+                >
+                  <iconify-icon
+                    icon="ic:baseline-people"
+                    class="fs-7 text-white"
+                  ></iconify-icon>
+                </div>
+                <h6 class="fw-normal fs-3 mb-1">Tổng số nhân viên</h6>
+                <h3
+                  class="mb-3 d-flex align-items-center justify-content-center gap-1"
+                ></h3>
+                <a href="#" class="btn btn-outline-info m-1">Xem chi tiết</a>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card card bg-info-subtle">
+              <div class="card-body text-center px-9 pb-4">
+                <div
+                  class="d-flex align-items-center justify-content-center round-48 rounded text-bg-info flex-shrink-0 mb-3 mx-auto"
+                >
+                  <iconify-icon
+                    icon="ic:baseline-people"
+                    class="fs-7 text-white"
+                  ></iconify-icon>
+                </div>
+                <h6 class="fw-normal fs-3 mb-1">Tổng số nhân viên</h6>
+                <h3
+                  class="mb-3 d-flex align-items-center justify-content-center gap-1"
+                ></h3>
+                <a href="#" class="btn btn-outline-info m-1">Xem chi tiết</a>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card card bg-info-subtle">
+              <div class="card-body text-center px-9 pb-4">
+                <div
+                  class="d-flex align-items-center justify-content-center round-48 rounded text-bg-info flex-shrink-0 mb-3 mx-auto"
+                >
+                  <iconify-icon
+                    icon="ic:baseline-people"
+                    class="fs-7 text-white"
+                  ></iconify-icon>
+                </div>
+                <h6 class="fw-normal fs-3 mb-1">Tổng số nhân viên</h6>
+                <h3
+                  class="mb-3 d-flex align-items-center justify-content-center gap-1"
+                ></h3>
+                <a href="#" class="btn btn-outline-info m-1">Xem chi tiết</a>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card card bg-info-subtle">
+              <div class="card-body text-center px-9 pb-4">
+                <div
+                  class="d-flex align-items-center justify-content-center round-48 rounded text-bg-info flex-shrink-0 mb-3 mx-auto"
+                >
+                  <iconify-icon
+                    icon="ic:baseline-people"
+                    class="fs-7 text-white"
+                  ></iconify-icon>
+                </div>
+                <h6 class="fw-normal fs-3 mb-1">Tổng số nhân viên</h6>
+                <h3
+                  class="mb-3 d-flex align-items-center justify-content-center gap-1"
+                ></h3>
+                <a href="#" class="btn btn-outline-info m-1">Xem chi tiết</a>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card card bg-info-subtle">
+              <div class="card-body text-center px-9 pb-4">
+                <div
+                  class="d-flex align-items-center justify-content-center round-48 rounded text-bg-info flex-shrink-0 mb-3 mx-auto"
+                >
+                  <iconify-icon
+                    icon="ic:baseline-people"
+                    class="fs-7 text-white"
+                  ></iconify-icon>
+                </div>
+                <h6 class="fw-normal fs-3 mb-1">Tổng số nhân viên</h6>
+                <h3
+                  class="mb-3 d-flex align-items-center justify-content-center gap-1"
+                ></h3>
+                <a href="#" class="btn btn-outline-info m-1">Xem chi tiết</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> -->
+
+    <div
+      th:if="${param.success}"
+      class="alert customize-alert alert-dismissible alert-light-info bg-info-subtle text-info fade show remove-close-icon"
+      role="alert"
+    >
+      <button
+        type="button"
+        class="btn-close"
+        data-bs-dismiss="alert"
+        aria-label="Close"
+      ></button>
+      <div class="d-flex align-items-center me-3 me-md-0">
+        <i class="ti ti-info-circle fs-5 me-2 text-info"></i>
+        Hello,&nbsp;<span th:text="${user.username}">User</span>!
+      </div>
+    </div>
+    <div class="card col bg-primary-subtle">
+      <div class="">
+        <div class="card-body">
+          <div id="calendar"></div>
+
+          <!-- Modal -->
+          <div
+            class="modal fade mt-5"
+            id="addEventModal"
+            tabindex="-1"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body">
+                  <form
+                    role="form"
+                    method="post"
+                    th:action="@{/calendar/new}"
+                    th:object="${calendar}"
+                  >
+                    <div class="mb-3">
+                      <label for="eventTitle" class="form-label"
+                        >Event Title</label
+                      >
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="eventTitle"
+                        placeholder="Enter event title"
+                      />
+                    </div>
+                    <div
+                      class="btn-group mb-3"
+                      role="group"
+                      aria-label="Basic radio toggle button group"
+                    >
+                      <input
+                        type="radio"
+                        class="btn-check"
+                        name="btnradio"
+                        id="btnradio1"
+                        value="event"
+                        autocomplete="off"
+                        checked
+                      />
+                      <label class="btn btn-outline-primary" for="btnradio1"
+                        >Sự kiện</label
+                      >
+
+                      <input
+                        type="radio"
+                        class="btn-check"
+                        name="btnradio"
+                        id="btnradio2"
+                        value="task"
+                        autocomplete="off"
+                      />
+                      <label class="btn btn-outline-primary" for="btnradio2"
+                        >Việc cần làm</label
+                      >
+
+                      <input
+                        type="radio"
+                        class="btn-check"
+                        name="btnradio"
+                        id="btnradio3"
+                        value="schedule"
+                        autocomplete="off"
+                      />
+                      <label class="btn btn-outline-primary" for="btnradio3"
+                        >Lịch hẹn</label
+                      >
+                    </div>
+                    <div id="calendarTemplates"></div>
+
+                    <script>
+                      const selectedType = document.querySelectorAll(
+                        'input[name="btnradio"]'
+                      );
+                      const calendarTemplates =
+                        document.getElementById("calendarTemplates");
+
+                      const templates = {
+                        event: `
+                          <div class="row">
+                            <div class="col mb-6">
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="none" checked>
+                                  <label class="form-check-label" for="inlineRadio1">Does not repeat</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="daily">
+                                  <label class="form-check-label" for="inlineRadio2">Daily</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="weekly" >
+                                  <label class="form-check-label" for="inlineRadio3">Weekly</label>
+                              </div>
+                            </div>
+                            
+                            <label class="form-label">Time</label>
+                            <div class="col-md-6 mb-3">
+                              <label for="eventDateFrom" class="text-muted">From</label>
+                              <input id="datetimeInputFrom" class="form-control datetimeInput" placeholder="Chọn ngày và giờ" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                              <label for="eventDateTo" class="text-muted">To</label>
+                              <input id="datetimeInputTo" class="form-control datetimeInput" placeholder="Chọn ngày và giờ" />
+                            </div>
+                            </div>
+                            <div class="col mb-6">
+                              <label for="eventLocation" class="form-label">Location</label>
+                              <input type="text" class="form-control" id="eventLocation" placeholder="Location"/>
+                            </div>
+                            <div class="col mb-3">
+                              <label class="form-label">Chọn màu sự kiện</label>
+                              <div class="d-flex gap-2" id="colorOptions">
+                                <div class="color-option rounded-circle" data-color="#007bff" style="width:30px;height:30px;background:#007bff;cursor:pointer;"></div>
+                                <div class="color-option rounded-circle" data-color="#28a745" style="width:30px;height:30px;background:#28a745;cursor:pointer;"></div>
+                                <div class="color-option rounded-circle" data-color="#dc3545" style="width:30px;height:30px;background:#dc3545;cursor:pointer;"></div>
+                                <div class="color-option rounded-circle" data-color="#ffc107" style="width:30px;height:30px;background:#ffc107;cursor:pointer;"></div>
+                              </div>
+                              <input type="hidden" id="eventColor" value="#007bff" />
+                            </div>
+                          </div>
+                        `,
+                        task: `
+                          <div class="row">
+                            <label class="form-label">Time</label>
+                            <div class="col-md-6 mb-3">
+                              <label for="eventDateFrom" class="text-muted">From</label>
+                              <input id="datetimeInputFrom" class="form-control datetimeInput" placeholder="Chọn ngày và giờ" />
+                            </div>
+                            <div class="col-md-6 mb-3">
+                              <label for="eventDateTo" class="text-muted">To</label>
+                              <input id="datetimeInputTo" class="form-control datetimeInput" placeholder="Chọn ngày và giờ" />
+                            </div>
+                            </div>
+                            <div class="col mb-6">
+                              <label for="eventLocation" class="form-label">Location</label>
+                              <input type="text" class="form-control" id="eventLocation" placeholder="Location"/>
+                            </div>
+                            <div class="col mb-3">
+                              <label class="form-label">Chọn màu sự kiện</label>
+                              <div class="d-flex gap-2" id="colorOptions">
+                                <div class="color-option rounded-circle" data-color="#007bff" style="width:30px;height:30px;background:#007bff;cursor:pointer;"></div>
+                                <div class="color-option rounded-circle" data-color="#28a745" style="width:30px;height:30px;background:#28a745;cursor:pointer;"></div>
+                                <div class="color-option rounded-circle" data-color="#dc3545" style="width:30px;height:30px;background:#dc3545;cursor:pointer;"></div>
+                                <div class="color-option rounded-circle" data-color="#ffc107" style="width:30px;height:30px;background:#ffc107;cursor:pointer;"></div>
+                              </div>
+                              <input type="hidden" id="eventColor" value="#007bff" />
+                            </div>
+                          </div>
+                        `,
+                      };
+
+                      function colorEventSelect() {
+                        document
+                          .querySelectorAll("#colorOptions .color-option")
+                          .forEach((option) => {
+                            option.addEventListener("click", function () {
+                              document
+                                .querySelectorAll("#colorOptions .color-option")
+                                .forEach((opt) => {
+                                  opt.style.border = "none";
+                                });
+                              this.style.border = "2px solid #000";
+                              document.getElementById("eventColor").value =
+                                this.dataset.color;
+                            });
+                          });
+                      }
+
+                      function updateTemplate(value) {
+                        calendarTemplates.innerHTML = templates[value] || "";
+                        colorEventSelect();
+                      }
+
+                      const modalEl = document.getElementById("addEventModal");
+                      modalEl.addEventListener("shown.bs.modal", () => {
+                        // Lấy tất cả input có class datetimeInput
+                        document
+                          .querySelectorAll("#calendarTemplates .datetimeInput")
+                          .forEach((el) => {
+                            new tempusDominus.TempusDominus(el, {
+                              display: {
+                                theme: "light",
+                                icons: {
+                                  type: "icons",
+                                  time: "bi bi-clock",
+                                  date: "bi bi-calendar",
+                                  up: "bi bi-chevron-up",
+                                  down: "bi bi-chevron-down",
+                                  previous: "bi bi-chevron-left",
+                                  next: "bi bi-chevron-right",
+                                  today: "bi bi-calendar-check",
+                                  clear: "bi bi-trash",
+                                  close: "bi bi-x",
+                                },
+                                components: {
+                                  calendar: true,
+                                  date: true,
+                                  month: true,
+                                  year: true,
+                                  decades: true,
+                                  clock: true,
+                                  hours: true,
+                                  minutes: true,
+                                },
+                              },
+                              stepping: 1,
+                              localization: {
+                                format: "yyyy-MM-dd HH:mm",
+                              },
+                            });
+                          });
+                      });
+
+                      selectedType.forEach((radio) => {
+                        radio.addEventListener("change", function () {
+                          updateTemplate(this.value);
+                        });
+                      });
+
+                      const defaultRadio = document.querySelector(
+                        'input[name="btnradio"]:checked'
+                      );
+                      if (defaultRadio) {
+                        updateTemplate(defaultRadio.value);
+                      }
+                    </script>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="button" class="btn btn-primary">
+                    Save changes
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css"
+          />
+          <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              const calendarEl = document.getElementById("calendar");
+              const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: "dayGridMonth", // month / week / day
+                weekNumbers: true,
+                headerToolbar: {
+                  left: "prev,next today",
+                  center: "title",
+                  right:
+                    "customAddButton dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+                },
+                customButtons: {
+                  customAddButton: {
+                    text: "add",
+                    click: function () {
+                      const modal = new bootstrap.Modal(
+                        document.getElementById("addEventModal")
+                      );
+                      modal.show();
+                    },
+                  },
+                },
+                themeSystem: "bootstrap5",
+                height: 600,
+                events: [
+                  {
+                    title: "Event 1",
+                    start: "2025-08-01T10:00:00",
+                    end: "2025-08-01T12:00:00",
+                    description: "This is a test event",
+                  },
+                  {
+                    title: "Event 2",
+                    start: "2025-08-02T14:00:00",
+                    end: "2025-08-02T16:00:00",
+                    description: "This is another test event",
+                  },
+                ],
+              });
+              calendar.render();
+            });
+          </script>
+        </div>
+      </div>
+    </div>
+  </div>
+</html>

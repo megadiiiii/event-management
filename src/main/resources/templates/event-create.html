@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://thymeleaf.org"
+  xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{admin-layout}"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>New Club</title>
+  </head>
+
+  <div layout:fragment="admin" class="">
+    <form role="form" method="post">
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          placeholder="Title"
+        />
+        <label for="photoUrl" class="form-label">Photo URL</label>
+        <input
+          type="text"
+          class="form-control"
+          id="photoUrl"
+          placeholder="Photo URL"
+        />
+        <label for="content" class="form-label">Content</label>
+        <input
+          type="text"
+          class="form-control"
+          id="content"
+          placeholder="Content"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</html>

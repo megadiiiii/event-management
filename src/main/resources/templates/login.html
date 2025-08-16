@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{auth-layout}"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login</title>
+  </head>
+
+  <body>
+    <section layout:fragment="auth">
+      <div
+        class="page-wrapper"
+        id="main-wrapper"
+        data-layout="vertical"
+        data-navbarbg="skin6"
+        data-sidebartype="full"
+        data-sidebar-position="fixed"
+        data-header-position="fixed"
+      >
+        <div
+          class="position-relative overflow-hidden text-bg-light min-vh-100 d-flex align-items-center justify-content-center"
+        >
+          <div class="d-flex align-items-center justify-content-center w-100">
+            <div class="row justify-content-center w-100">
+              <div class="col-md-8 col-lg-6 col-xxl-3">
+                <div class="card mb-0">
+                  <div class="card-body">
+                    <!-- <a
+                      href="#"
+                      class="text-nowrap logo-img text-center d-block py-3 w-100"
+                    >
+                      <img
+                        src="../HRM/src/assets/images/logos/HRM_Text.png"
+                        alt=""
+                        style="width: 150px; transform: translateX(5%)"
+                      />
+                    </a> -->
+
+                    <div
+                      th:if="${param.error}"
+                      class="alert customize-alert alert-dismissible alert-light-danger bg-danger-subtle text-danger fade show remove-close-icon"
+                      role="alert"
+                    >
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="Close"
+                      ></button>
+                      <div class="d-flex align-items-center me-3 me-md-0">
+                        Username or Password is incorrect!
+                      </div>
+                    </div>
+                    <div
+                      th:if="${param.logout}"
+                      class="alert customize-alert alert-dismissible alert-light-info bg-info-subtle text-info fade show remove-close-icon"
+                      role="alert"
+                    >
+                      <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="alert"
+                        aria-label="Close"
+                      ></button>
+                      <div class="d-flex align-items-center me-3 me-md-0">
+                        <i class="ti ti-info-circle fs-5 me-2 text-info"></i>
+                        You have been logged out successfully!
+                      </div>
+                    </div>
+                    <h3 class="lh-base text-center">
+                      Welcome Back
+                      <br />
+                      <span class="h6 text-muted">Sign In Your Account</span>
+                    </h3>
+                    <form th:action="@{/login}" method="post">
+                      <div class="form-floating mb-3">
+                        <input
+                          class="form-control border border-info"
+                          id="username"
+                          name="username"
+                          type="text"
+                          placeholder="Username"
+                        />
+                        <label>
+                          <i class="ti ti-user me-2 fs-4 text-info"></i>
+                          <span class="border-start border-info ps-3"
+                            >Username</span
+                          >
+                        </label>
+                      </div>
+                      <div class="form-floating mb-3">
+                        <input
+                          type="password"
+                          class="form-control border border-info"
+                          placeholder="Password"
+                          name="password"
+                        />
+                        <label>
+                          <i class="ti ti-lock me-2 fs-4 text-info"></i>
+                          <span class="border-start border-info ps-3"
+                            >Password</span
+                          >
+                        </label>
+                      </div>
+                      <div class="mb-2">
+                        <a href="#" for="sf2" class="">Forgot the password ?</a>
+                      </div>
+
+                      <div
+                        class="d-md-flex align-items-center form-floating mb-3"
+                      >
+                        <div class="form-check">
+                          <input
+                            type="checkbox"
+                            class="form-check-input"
+                            id="sf2"
+                            value="check"
+                          />
+                          <label class="form-check-label" for="sf2"
+                            >Keep me logged in</label
+                          >
+                        </div>
+                        <div class="mt-3 mt-md-0 ms-auto">
+                          <button
+                            type="submit"
+                            class="btn btn-info hstack gap-6"
+                            name="btnLogin"
+                          >
+                            <i class="ti ti-send me-2 fs-4"></i>
+                            Login
+                          </button>
+                        </div>
+                      </div>
+                      <div class="mb-2">
+                        <p>
+                          Don’t have an account yet?,
+                          <a th:href="@{/register}" for="sf2" class=""
+                            >Sign Up Now</a
+                          >
+                        </p>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

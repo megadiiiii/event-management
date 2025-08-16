@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Trang chủ</title>
+    <link rel="stylesheet" th:href="@{/assets/css/styles.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/tempus-dominus.min.css}" />
+    <!-- CSS của Tempus Dominus -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/css/tempus-dominus.min.css"
+    />
+    <!-- Popper.js (bắt buộc cho dropdown) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <!-- JS của Tempus Dominus -->
+    <script src="https://cdn.jsdelivr.net/npm/@eonasdan/tempus-dominus@6.9.4/dist/js/tempus-dominus.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+  </head>
+
+  <body>
+    <header class="header-fp p-0 w-100 bg-light-gray">
+      <nav class="navbar navbar-expand-lg py-10">
+        <div class="container d-flex justify-content-between">
+          <a
+            href="@{main/frontend-landingpage.html}"
+            class="text-nowrap logo-img"
+          >
+            <img
+              src="https://raw.githubusercontent.com/megadiiiii/Web/refs/heads/main/W2/logo.png"
+              style="height: 50px"
+              alt="Logo"
+            />
+          </a>
+          <button
+            class="navbar-toggler border-0 p-0 shadow-none"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasRight"
+            aria-controls="offcanvasRight"
+          >
+            <i class="ti ti-menu-2 fs-8"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto mb-2 gap-xl-7 gap-8 mb-lg-0">
+              <li class="nav-item">
+                <a
+                  class="nav-link fs-4 fw-bold text-dark link-primary"
+                  href="@{main/frontend-aboutpage.html}"
+                  >About Us</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link active fs-4 fw-bold text-dark link-primary"
+                  href="@{main/frontend-blogpage.html}"
+                  >Blog</a
+                >
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link fs-4 fw-bold text-dark link-primary d-flex gap-2"
+                  href="@{main/frontend-portfoliopage.html}"
+                  >Portfolio
+                  
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link fs-4 fw-bold text-dark link-primary"
+                  href="@{main/index.html}"
+                  >Dashboard</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link fs-4 fw-bold text-dark link-primary"
+                  href="@{main/frontend-pricingpage.html}"
+                  >Pricing</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link fs-4 fw-bold text-dark link-primary"
+                  href="@{main/frontend-contactpage.html}"
+                  >Contact</a
+                >
+              </li>
+            </ul>
+            <a
+              href="@{main/authentication-login.html}"
+              class="btn btn-dark btn-sm py-2 px-9"
+              >Log In</a
+            >
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="bg-light-gray" style="min-height: calc(100vh - 287px)">
+      <div class="container" layout:fragment="body"></div>
+    </main>
+
+    <footer class="bg-dark">
+      <div class="container">
+        <div class="row py-7 py-md-14 py-lg-11">
+          <div class="col-md-3 col-6 mb-7 mb-md-0">
+            <img
+              src="https://raw.githubusercontent.com/megadiiiii/Web/refs/heads/main/W2/logo.png"
+              width="150"
+              alt="white logo"
+            />
+
+            <ul class="d-flex flex-column gap-9 mt-7 mb-0">
+              <li>
+                <a
+                  href="../main/app-kanban.html"
+                  class="fs-4 text-light link-primary"
+                  >Kanban</a
+                >
+              </li>
+              <li>
+                <a
+                  href="../main/app-invoice.html"
+                  class="fs-4 text-light link-primary"
+                  >Invoice List</a
+                >
+              </li>
+              
+            </ul>
+          </div>
+          <div class="col-md-3 col-6 mb-7 mb-md-0">
+            <h3 class="fs-4 text-white fw-semibold mb-7">Forms</h3>
+            <ul class="d-flex flex-column gap-9 mb-0">
+              <li>
+                <a
+                  href="../main/form-basic.html"
+                  class="fs-4 text-light link-primary"
+                  >Form Basic</a
+                >
+              </li>
+              <li>
+                <a
+                  href="../main/form-horizontal.html"
+                  class="fs-4 text-light link-primary"
+                  >Form Horizontal</a
+                >
+              </li>
+              <li>
+                <a
+                  href="../main/form-wizard.html"
+                  class="fs-4 text-light link-primary"
+                  >Form Wizard</a
+                >
+              </li>
+              
+            </ul>
+          </div>
+          <div class="col-md-3 col-6 mb-7 mb-md-0">
+            <h3 class="fs-4 text-white fw-semibold mb-7">Tables</h3>
+            <ul class="d-flex flex-column gap-9 mb-0">
+              <li>
+                <a
+                  href="../main/table-basic.html"
+                  class="fs-4 text-light link-primary"
+                  >Basic Table</a
+                >
+              </li>
+              <li>
+                <a
+                  href="../main/table-dark-basic.html"
+                  class="fs-4 text-light link-primary"
+                  >Table Dark Basic</a
+                >
+              </li>
+              <li>
+                <a
+                  href="../main/table-sizing.html"
+                  class="fs-4 text-light link-primary"
+                  >Table Sizing</a
+                >
+              </li>
+              
+            </ul>
+          </div>
+          <div class="col-md-3 col-6 mb-7 mb-md-0">
+            <h3 class="fs-4 text-white fw-semibold mb-7">Follow us</h3>
+            <div class="d-flex gap-9">
+              <a
+                href="javascript:void(0)"
+                data-bs-toggle="tooltip"
+                data-bs-title="Facebook"
+              >
+                <img
+                  src="https://bootstrapdemos.adminmart.com/matdash/dist/assets/images/frontend-pages/icon-facebook.svg"
+                  alt="facebook"
+                />
+              </a>
+              <a
+                href="javascript:void(0)"
+                data-bs-toggle="tooltip"
+                data-bs-title="Twitter"
+              >
+                <img
+                  src="https://bootstrapdemos.adminmart.com/matdash/dist/assets/images/frontend-pages/icon-twitter.svg"
+                  alt="twitter"
+                />
+              </a>
+              <a
+                href="javascript:void(0)"
+                data-bs-toggle="tooltip"
+                data-bs-title="Instagram"
+              >
+                <img
+                  src="https://bootstrapdemos.adminmart.com/matdash/dist/assets/images/frontend-pages/icon-instagram.svg"
+                  alt="instagram"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script th:src="@{/assets/libs/jquery/dist/jquery.min.js}"></script>
+    <script
+      th:src="@{/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js}"
+    ></script>
+    <script th:src="@{/assets/js/sidebarmenu.js}"></script>
+    <script th:src="@{/assets/js/app.min.js}"></script>
+    <script th:src="@{/assets/js/tempus-dominus.min.js}"></script>
+    <script th:src="@{/assets/libs/simplebar/dist/simplebar.js}"></script>
+    <!-- solar icons -->
+    <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+  </body>
+</html>

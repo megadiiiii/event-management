@@ -1,0 +1,11 @@
+@import "../libs/bootstrap/scss/functions";
+@import "../libs/bootstrap/scss/variables"; // load biến gốc trước để có $theme-colors
+
+$primary: #165B75;
+
+$theme-colors: map-merge(
+  $theme-colors,
+  (
+    "primary": $primary
+  )
+);
