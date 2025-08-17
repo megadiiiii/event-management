@@ -1,6 +1,6 @@
 package com.megadiiiii.eventmanagement.dto.event;
 
-import com.megadiiiii.eventmanagement.models.TicketSummaryDTO;
+import com.megadiiiii.eventmanagement.dto.ticket.TicketSummaryDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

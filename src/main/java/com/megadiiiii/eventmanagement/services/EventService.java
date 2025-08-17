@@ -9,5 +9,5 @@ import java.util.List;
 public interface EventService {
     List<EventSummaryDTO> findAllEvents();
 
-    EventDetailDTO createEvent(CreateEventDTO event);
+    EventDetailDTO createEvent(CreateEventDTO createEventDTO);
 }

@@ -11,10 +11,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateUserDTO {
-    @NotBlank(message="Name is not null")
+    @NotBlank(message = "Username is not null")
+    private String username;
+    @NotBlank(message = "Name is not null")
     private String name;
-    @NotBlank(message="Email is not null")
+    @NotBlank(message = "Email is not null")
     private String email;
-    @NotBlank(message="Password is not null")
+    @NotBlank(message = "Password is not null")
     private String password;
 }

@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.awt.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -19,12 +21,13 @@ import java.util.List;
 public class EventEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "event_id")
     private Long id;
 
     @Column(name = "event_name")
     private String eventName;
 
-    @Column(name = "event_description")
+    @Column(name = "event_description", columnDefinition = "longtext")
     private String eventDescription;
 
     @Column(name = "event_location")
@@ -49,4 +52,7 @@ public class EventEntity {
 
     @OneToMany(mappedBy = "event", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<TicketEntity> tickets;
+
+    @OneToMany(mappedBy = "event", cascade = CascadeType.ALL)
+    private List<EventMediaEntity> mediaList = new ArrayList<>();
 }

@@ -9,32 +9,155 @@
     <title>New Club</title>
   </head>
 
-  <div layout:fragment="admin" class="">
-    <form role="form" method="post">
+  <div layout:fragment="admin">
+    <form
+      role="form"
+      method="post"
+      th:action="@{/admin/event-create}"
+      th:object="${eventDTO}"
+      enctype="multipart/form-data"
+      class="dropzone"
+      id="eventDropzone"
+    >
+      <!-- Event info -->
       <div class="mb-3">
-        <label for="title" class="form-label">Title</label>
+        <label class="form-label">Event Name</label>
+        <input type="text" class="form-control" th:field="*{eventName}" />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Event Description</label>
         <input
           type="text"
           class="form-control"
-          id="title"
-          placeholder="Title"
-        />
-        <label for="photoUrl" class="form-label">Photo URL</label>
-        <input
-          type="text"
-          class="form-control"
-          id="photoUrl"
-          placeholder="Photo URL"
-        />
-        <label for="content" class="form-label">Content</label>
-        <input
-          type="text"
-          class="form-control"
-          id="content"
-          placeholder="Content"
+          th:field="*{eventDescription}"
         />
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+
+      <div class="mb-3">
+        <label class="form-label">Event Location</label>
+        <input type="text" class="form-control" th:field="*{eventLocation}" />
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Start Time</label>
+          <input
+            type="datetime-local"
+            class="form-control"
+            th:field="*{eventStartTime}"
+          />
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">End Time</label>
+          <input
+            type="datetime-local"
+            class="form-control"
+            th:field="*{eventEndTime}"
+          />
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Event Type</label>
+        <select class="form-select" th:field="*{eventType}">
+          <option value="CONFERENCE">Conference</option>
+          <option value="MEETUP">Meetup</option>
+          <option value="WORKSHOP">Workshop</option>
+          <option value="WEBINAR">Webinar</option>
+        </select>
+      </div>
+
+      <!-- Dropzone -->
+      <div class="mb-3">
+        <label class="form-label">Media Files</label>
+
+        <input
+          type="file"
+          th:field="*{mediaFiles}"
+          class="form-control"
+          id="mediaFiles"
+          style="display: none"
+        />
+        <div id="preview"></div>
+        <!-- JS -->
+        <script>
+          Dropzone.autoDiscover = false;
+
+          const myDropzone = new Dropzone("#eventDropzone", {
+            autoProcessQueue: false,
+            acceptedFiles: "image/*",
+            previewsContainer: "#preview",
+            addRemoveLinks: true,
+            parallelUploads: 10,
+            maxFilesize: 5, // MB
+            init: function () {
+              const dz = this;
+
+              dz.on("addedfile", function (file) {
+                // show modal preview ngay khi thêm file
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                  document.getElementById("previewImage").src = e.target.result;
+                  const modal = new bootstrap.Modal(
+                    document.getElementById("previewModal")
+                  );
+                  modal.show();
+                };
+                reader.readAsDataURL(file);
+              });
+
+              // Submit form
+              document
+                .querySelector("form")
+                .addEventListener("submit", function (e) {
+                  e.preventDefault();
+                  const form = e.target;
+                  const input = document.getElementById("mediaFiles"); // input ẩn
+                  const dt = new DataTransfer();
+
+                  // gán tất cả file Dropzone vào input ẩn
+                  dz.files.forEach((file) => dt.items.add(file));
+                  input.files = dt.files;
+
+                  form.submit(); // Spring Boot nhận List<MultipartFile>
+                });
+            },
+          });
+        </script>
+      </div>
+
+      <div class="mb-3">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
     </form>
+
+    <!-- Crop Modal -->
+    <div class="modal fade" id="previewModal" tabindex="-1">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Preview</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <img id="previewImage" style="max-width: 100%" />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn bg-danger-subtle text-danger waves-effect text-start"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </html>

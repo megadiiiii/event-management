@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="http://thymeleaf.org"
+  xmlns:layout="http://ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{admin-layout}"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <title>New Club</title>
+  </head>
+
+  <div layout:fragment="admin" class="">
+    <form
+      th:action="@{/admin/event-create}"
+      method="post"
+      enctype="multipart/form-data"
+      class="dropzone"
+      id="eventDropzone"
+    >
+      <div class="dz-message">Kéo thả ảnh vào đây hoặc nhấn để chọn</div>
+      <button type="submit">Submit</button>
+    </form>
+
+    <script>
+      // Tắt auto discover nếu dùng nhiều dropzone
+      Dropzone.autoDiscover = false;
+
+      const myDropzone = new Dropzone("#eventDropzone", {
+        url: "#", // Thymeleaf form submit nên để #, không dùng ajax
+        autoProcessQueue: false, // Không upload tự động
+        uploadMultiple: true, // Có thể upload nhiều file
+        parallelUploads: 10,
+        maxFilesize: 5, // MB
+        acceptedFiles: "image/*",
+        addRemoveLinks: true,
+        previewsContainer: ".dropzone-previews", // Nếu muốn container riêng cho previews
+      });
+
+      // Khi submit form -> gửi form bình thường
+      document
+        .querySelector("#eventDropzone")
+        .addEventListener("submit", function (e) {
+          e.preventDefault(); // ngăn auto submit
+          // Dropzone giữ files trong myDropzone.files
+          // Chỉ cần form submit bình thường sẽ gửi files
+          this.submit();
+        });
+    </script>
+  </div>
+</html>

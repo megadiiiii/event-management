@@ -12,6 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDetailDTO {
+    private String username;
     private String name;
     private String email;
     private Set<RoleDTO> roles;

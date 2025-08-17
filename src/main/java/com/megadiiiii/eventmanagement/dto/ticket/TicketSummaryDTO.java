@@ -1,4 +1,4 @@
-package com.megadiiiii.eventmanagement.models;
+package com.megadiiiii.eventmanagement.dto.ticket;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
